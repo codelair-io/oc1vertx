@@ -15,26 +15,26 @@ import javax.ws.rs.core.MediaType;
 @Path("/numbers")
 @ApplicationScoped
 public class NumbersResource {
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response generatePrimeUpTo(@QueryParam("ceiling") @DefaultValue("100") final int ceiling) {
-        final var startTime = System.currentTimeMillis();
-        final var collect = primeUpTo(ceiling).stream().map(Object::toString).collect(Collectors.joining(" "));
-        final var runTime = System.currentTimeMillis() - startTime;
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response generatePrimeUpTo(@QueryParam("ceiling") @DefaultValue("100") final int ceiling) {
+    final var startTime = System.currentTimeMillis();
+    final var collect = primeUpTo(ceiling).stream().map(Object::toString).collect(Collectors.joining(" "));
+    final var runTime = System.currentTimeMillis() - startTime;
 
-        return new Response(ResponseCode.OK, collect, runTime);
-    }
+    return new Response(ResponseCode.OK, collect, runTime);
+  }
 
-    private List<Integer> primeUpTo(final int n) {
-        return IntStream.rangeClosed(2, n).filter(this::isPrime).boxed().collect(Collectors.toList());
-    }
+  private List<Integer> primeUpTo(final int n) {
+    return IntStream.rangeClosed(2, n).filter(this::isPrime).boxed().collect(Collectors.toList());
+  }
 
-    private boolean isPrime(final int number) {
-        for (int i = 2; i * i < number; i++) {
-            if (number % i == 0) {
-                return false;
-            }
-        }
-        return true;
+  private boolean isPrime(final int number) {
+    for (int i = 2; i * i < number; i++) {
+      if (number % i == 0) {
+        return false;
+      }
     }
+    return true;
+  }
 }

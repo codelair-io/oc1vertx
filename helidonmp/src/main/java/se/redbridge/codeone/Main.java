@@ -19,7 +19,7 @@ package se.redbridge.codeone;
 import io.helidon.microprofile.server.Server;
 
 public final class Main {
-    public static void main(final String[] args) {
-        Server.create().start();
-    }
+  public static void main(final String[] args) {
+    Server.create().start();
+  }
 }

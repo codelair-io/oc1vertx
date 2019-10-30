@@ -12,16 +12,16 @@ import javax.ws.rs.core.MediaType;
 @ApplicationScoped
 public class BusyworkResource {
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response open(@QueryParam("input") @DefaultValue("") String input) {
-        return processRequest(input);
-    }
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response open(@QueryParam("input") @DefaultValue("") String input) {
+    return processRequest(input);
+  }
 
-    private Response processRequest(String input) {
-        final long start = System.currentTimeMillis();
-        return input != null && !input.isEmpty()
-                ? new Response(ResponseCode.OK, input.chars().sorted().collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString(), System.currentTimeMillis() - start)
-                : new Response(ResponseCode.INVALID_MESSAGE, "Null message is invalid", System.currentTimeMillis() - start);
-    }
+  private Response processRequest(String input) {
+    final long start = System.currentTimeMillis();
+    return input != null && !input.isEmpty()
+      ? new Response(ResponseCode.OK, input.chars().sorted().collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString(), System.currentTimeMillis() - start)
+      : new Response(ResponseCode.INVALID_MESSAGE, "Null message is invalid", System.currentTimeMillis() - start);
+  }
 }
