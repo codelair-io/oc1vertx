@@ -21,6 +21,7 @@
     <module>quarkus</module>
     <module>k8s</module>
     <module>personservice</module>
+    <module>helidonmp</module>
   </modules>
 
 </project>
